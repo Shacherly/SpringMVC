@@ -46,7 +46,10 @@ class AjaxResult {
 }
 
 enum ResponseStatus {
-    SUCCESS(200, "success"), FAIL(400, "fail");
+    SUCCESS(200, "success"),
+    FAIL(400, "fail"),
+
+    ;
 
     private Integer code;
     private String status;
