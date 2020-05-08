@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <!--<welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>-->
+
+    <servlet>
+        <!--以前通过url-pattern匹配拦截请求，然后交给对应的servlet-name-->
+        <servlet-name>servlet1</servlet-name>
+        <!--现在url-pattern / 直接拦截所有请求，拦截的所有请求都交予这个类，再做请求分发-->
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!--再兵分两路，上面拦截所有请求的同时，开启子线程参照mvc.xml扫描所有的包将   具体的请求路径与控制器对应上-->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:/config/mvc.xml</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>servlet1</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>
